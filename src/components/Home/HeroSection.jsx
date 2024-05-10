@@ -6,6 +6,7 @@ const HeroSection = () => {
       id: 1,
       title: "23,441",
       subTitle: "Live Jobs",
+      
       icon: <FaSuitcase />,
     },
     {
@@ -40,9 +41,7 @@ const HeroSection = () => {
               perfect job that matches your skills and aspirations.
             </p>
           </div>
-          <div className="image relative overflow-hidden w-full md:w-1">
-            <img src="/heroS.jpg" alt="hero" className="w-full h-full object-cover" />
-          </div>
+          
         </div>
         <div className="details flex flex-wrap justify-between gap-4 p-5 md:px-0">
   {details.map((element) => (

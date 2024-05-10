@@ -72,7 +72,7 @@ const PostJob = () => {
   
   
   if (!isAuthorized || (user && user.role !== "Employer")) {
-    navigateTo("/login");
+    return navigateTo("/login");
   }
 
   return (

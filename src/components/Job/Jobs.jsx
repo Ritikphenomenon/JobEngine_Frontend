@@ -23,7 +23,7 @@ const Jobs = () => {
   }, []);
 
   if (!isAuthorized) {
-    navigateTo("/login");
+    return navigateTo("/login");
   }
 
   return (

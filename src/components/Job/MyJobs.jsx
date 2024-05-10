@@ -30,7 +30,7 @@ const MyJobs = () => {
   }, []);
 
   if (!isAuthorized || (user && user.role !== "Employer")) {
-    navigateTo("/");
+    return navigateTo("/");
   }
 
   //Function For Enabling Editing Mode

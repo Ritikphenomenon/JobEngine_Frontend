@@ -27,7 +27,7 @@ const Navbar = () => {
   };
 
   if (!isAuthorized) {
-    return null; // If not authorized, don't render anything
+    return ; // If not authorized, don't render anything
   }
 
   return (
