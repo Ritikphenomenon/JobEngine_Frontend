@@ -5,16 +5,15 @@ import axios from "axios";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
+
   const { isAuthorized, setIsAuthorized, user } = useContext(Context);
+
   const navigateTo = useNavigate();
-
-  
-
 
   const handleLogout = async () => {
     try {
       const response = await axios.get(
-        "${import.meta.env.VITE_API_URL}api/v1/user/logout",
+        `${import.meta.env.VITE_API_URL}api/v1/user/logout`,
         {
           withCredentials: true,
         }
