@@ -3,6 +3,7 @@ import { MdFindInPage } from "react-icons/md";
 import { IoMdSend } from "react-icons/io";
 
 
+
 const HowItWorks = () => {
   return (
     <section className="how-it-works bg-gradient-to-r from-sky-500 to-indigo-500 py-20">

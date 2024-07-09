@@ -5,23 +5,23 @@ const PopularCompanies = () => {
   const companies = [
     {
       id: 1,
-      title: "Microsoft",
+      title: "NetFlix",
       location: "Sector-25 Noida, India",
-      openPositions: 10,
+      openPositions: 100,
       icon: <FaMicrosoft />,
     },
     {
       id: 2,
-      title: "Tesla",
+      title: "Google",
       location: "Sector-25 Noida, India",
-      openPositions: 5,
+      openPositions: 500,
       icon: <SiTesla />,
     },
     {
       id: 3,
-      title: "Apple",
+      title: "Facebbok",
       location: "Sector-25 Noida, India",
-      openPositions: 20,
+      openPositions: 200,
       icon: <FaApple />,
     },
   ];

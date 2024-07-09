@@ -15,23 +15,25 @@ const Register = () => {
   const [phone, setPhone] = useState("");
   const [password, setPassword] = useState("");
   const [role, setRole] = useState("");
+  const[change,notchange]=useState("password");
 
   const { isAuthorized, setIsAuthorized, user, setUser } = useContext(Context);
+
+  
 
   const handleRegister = async (e) => {
     e.preventDefault();
     try {
-      const { data } = await axios.post(
+      const response = await axios.post(
         `${import.meta.env.VITE_API_URL}api/v1/user/register`,
         { name, phone, email, role, password },
         {
           headers: {
             "Content-Type": "application/json",
-          },
-          withCredentials: true,
+          }
         }
       );
-      toast.success(data.message);
+      toast.success(response.data.message);
       setName("");
       setEmail("");
       setPassword("");
@@ -121,12 +123,13 @@ const Register = () => {
             <label>Password</label>
             <div className="flex items-center rounded-md">
               <input
-                type="password"
+                type={change}
                 placeholder="Your Password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 className="bg-gray-200 p-2 w-full rounded-md"
               />
+             
               <RiLock2Fill className="w-10 h-10 bg-green-700 p-2 text-white rounded-l-md" />
             </div>
           </div>

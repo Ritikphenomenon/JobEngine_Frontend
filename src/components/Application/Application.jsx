@@ -19,6 +19,7 @@ const Application = () => {
   // Function to handle file input changes
   const handleFileChange = (event) => {
     const resume = event.target.files[0];
+   
     setResume(resume);
   };
 
@@ -35,13 +36,15 @@ const Application = () => {
     formData.append("jobId", id);
 
     try {
+         const token=localStorage.getItem('token');
       const { data } = await axios.post(
         `${import.meta.env.VITE_API_URL}api/v1/application/post`,
         formData,
         {
-          withCredentials: true,
+         
           headers: {
             "Content-Type": "multipart/form-data",
+            'Authorization': `Bearer ${token}`
           },
         }
       );

@@ -4,6 +4,8 @@ import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../main";
 
+const token=localStorage.getItem('token');
+
 const JobDetails = () => {
   const { id } = useParams();
   const [job, setJob] = useState({});
@@ -14,7 +16,9 @@ const JobDetails = () => {
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API_URL}api/v1/job/${id}`, {
-        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`
+        }
       })
       .then((res) => {
         setJob(res.data.job);
@@ -63,11 +67,12 @@ const JobDetails = () => {
             </>
           ) : (
             <Link
-              to={`/application/${job._id}`}
-              className="text-blue-500 hover:text-blue-700 underline px-4 py-2 rounded-md bg-gray-200 mt-4"
-            >
-              Apply Now
-            </Link>
+            to={`/application/${job._id}`}
+            className="inline-block px-4 py-2 text-white bg-blue-500 hover:bg-blue-700 rounded-md transition-colors duration-300 ease-in-out"
+          >
+            Apply Now
+          </Link>
+          
           )}
         </div>
       </div>

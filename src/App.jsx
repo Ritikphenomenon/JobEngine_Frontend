@@ -19,19 +19,25 @@ import MyJobs from "./components/Job/MyJobs";
 
 const App = () => {
   const { isAuthorized, setIsAuthorized, setUser } = useContext(Context);
+  const token=localStorage.getItem('token');
+
   useEffect(() => {
     const fetchUser = async () => {
       try {
         const response = await axios.get(
           `${import.meta.env.VITE_API_URL}api/v1/user/getuser`,
           {
-            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
           }
         );
         setUser(response.data.user);
+       
         setIsAuthorized(true);
       } catch (error) {
         setIsAuthorized(false);
+       
       }
     };
     fetchUser();

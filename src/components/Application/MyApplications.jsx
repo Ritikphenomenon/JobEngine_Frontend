@@ -14,12 +14,17 @@ const MyApplications = () => {
   const { isAuthorized } = useContext(Context);
   const navigateTo = useNavigate();
 
+  const token=localStorage.getItem('token');
+
   useEffect(() => {
     try {
+      
       if (user && user.role === "Employer") {
         axios
           .get(`${import.meta.env.VITE_API_URL}api/v1/application/employer/getall`, {
-            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
           })
           .then((res) => {
             setApplications(res.data.applications);
@@ -27,7 +32,9 @@ const MyApplications = () => {
       } else {
         axios
           .get(`${import.meta.env.VITE_API_URL}api/v1/application/jobseeker/getall`, {
-            withCredentials: true,
+            headers: {
+              Authorization: `Bearer ${token}`
+            }
           })
           .then((res) => {
             setApplications(res.data.applications);
@@ -46,7 +53,9 @@ const MyApplications = () => {
     try {
       axios
         .delete(`${import.meta.env.VITE_API_URL}api/v1/application/delete/${id}`, {
-          withCredentials: true,
+          headers: {
+            Authorization: `Bearer ${token}`
+          }
         })
         .then((res) => {
           toast.success(res.data.message);

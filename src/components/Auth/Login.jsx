@@ -24,13 +24,14 @@ const Login = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          withCredentials: true,
         }
       );
       toast.success(data.message);
       setEmail("");
       setPassword("");
       setRole("");
+      const token = data.token;
+      localStorage.setItem("token", token);
       setIsAuthorized(true);
     } catch (error) {
       toast.error(error.response.data.message);
@@ -83,7 +84,7 @@ const Login = () => {
                   <input
                     type="email"
                     id="email"
-                    placeholder="zk@gmail.com"
+                    placeholder="ritik@gmail.com"
                     value={email}
                     onChange={(e) => setEmail(e.target.value)}
                     className="bg-gray-200 p-2 w-full rounded-md text-gray-800"

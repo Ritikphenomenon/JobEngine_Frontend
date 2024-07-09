@@ -3,6 +3,10 @@ import axios from "axios";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import { Context } from "../../main";
+
+const token=localStorage.getItem('token');
+console.log(token);
+
 const PostJob = () => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -22,7 +26,7 @@ const PostJob = () => {
     e.preventDefault();
     if (salaryType === "Fixed Salary") {
       setSalaryFrom("");
-      setSalaryFrom("");
+      setSalaryTo("");
     } else if (salaryType === "Ranged Salary") {
       setFixedSalary("");
     } else {
@@ -54,9 +58,10 @@ const PostJob = () => {
               salaryTo,
             },
         {
-          withCredentials: true,
+        
           headers: {
             "Content-Type": "application/json",
+              Authorization: `Bearer ${token}`
           },
         }
       )
@@ -79,7 +84,7 @@ const PostJob = () => {
     <>
     <div className="container mx-auto px-4 py-10">
       <div className="bg-white shadow-md rounded-lg px-8 pb-8">
-        <h3>POST NEW JOB</h3>
+        <h3 className="text-center">POST NEW JOB</h3>
         <form onSubmit={handleJobPost}>
           <div className="mb-6">
             <input

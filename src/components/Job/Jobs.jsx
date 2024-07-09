@@ -3,6 +3,7 @@ import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 import { Context } from "../../main";
 
+
 const Jobs = () => {
   const [jobs, setJobs] = useState([]);
   const { isAuthorized } = useContext(Context);
@@ -12,7 +13,7 @@ const Jobs = () => {
     try {
       axios
         .get(`${import.meta.env.VITE_API_URL}api/v1/job/getall`, {
-          withCredentials: true,
+         
         })
         .then((res) => {
           setJobs(res.data);

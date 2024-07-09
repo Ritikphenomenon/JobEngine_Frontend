@@ -1,7 +1,6 @@
 import { useContext } from "react";
 import { Context } from "../../main";
 import { Link, useNavigate } from "react-router-dom";
-import axios from "axios";
 import toast from "react-hot-toast";
 
 const Navbar = () => {
@@ -11,19 +10,13 @@ const Navbar = () => {
   const navigateTo = useNavigate();
 
   const handleLogout = async () => {
-    try {
-      const response = await axios.get(
-        `${import.meta.env.VITE_API_URL}api/v1/user/logout`,
-        {
-          withCredentials: true,
-        }
-      );
-      toast.success(response.data.message);
+    // Clear the token from localStorage
+    localStorage.removeItem("token");
+
+    // Navigate to the home page (you can replace '/' with the actual path to your home page)
+      toast.success("Logout successfully");
       setIsAuthorized(false);
       navigateTo("/login");
-    } catch (error) {
-      toast.error(error.response.data.message), setIsAuthorized(true);
-    }
   };
 
   if (!isAuthorized) {

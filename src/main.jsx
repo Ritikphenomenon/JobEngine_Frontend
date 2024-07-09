@@ -3,8 +3,8 @@ import ReactDOM from "react-dom/client";
 import App from "./App.jsx";
 
 export const Context = createContext({
-  isAuthorized: false,
-});
+  isAuthorized: false,}
+);
 
 const AppWrapper = () => {
   const [isAuthorized, setIsAuthorized] = useState(false);
@@ -20,6 +20,7 @@ const AppWrapper = () => {
       }}
     >
       <App />
+   
     </Context.Provider>
   );
 };

@@ -5,6 +5,7 @@ import { FaCheck } from "react-icons/fa6";
 import { RxCross2 } from "react-icons/rx";
 import { Context } from "../../main";
 import { useNavigate } from "react-router-dom";
+const token=localStorage.getItem('token');
 
 const MyJobs = () => {
   const [myJobs, setMyJobs] = useState([]);
@@ -18,7 +19,9 @@ const MyJobs = () => {
       try {
         const { data } = await axios.get(
           `${import.meta.env.VITE_API_URL}api/v1/job/getmyjobs`,
-          { withCredentials: true }
+          {  headers: {
+            Authorization: `Bearer ${token}`
+          } }
         );
         setMyJobs(data.myJobs);
       } catch (error) {
@@ -49,7 +52,9 @@ const MyJobs = () => {
     const updatedJob = myJobs.find((job) => job._id === jobId);
     await axios
       .put(`${import.meta.env.VITE_API_URL}api/v1/job/update/${jobId}`, updatedJob, {
-        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
       })
       .then((res) => {
         toast.success(res.data.message);
@@ -64,7 +69,9 @@ const MyJobs = () => {
   const handleDeleteJob = async (jobId) => {
     await axios
       .delete(`${import.meta.env.VITE_API_URL}api/v1/job/delete/${jobId}`, {
-        withCredentials: true,
+        headers: {
+          Authorization: `Bearer ${token}`
+        },
       })
       .then((res) => {
         toast.success(res.data.message);
